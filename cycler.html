@@ -26,9 +26,9 @@
 <body>
     <h1>Manisha Reddy Arragari builds a cycler</h1>
 		<div class="flex-container" id="target">
-		  <div>Row item 1</div>   
-		  <div>Row item 2</div>  
-		  <div>Row item 3</div>  
+		  <div class="cycler">Row item 1</div>   
+		  <div class="cycler">Row item 2</div>  
+		  <div class="cycler">Row item 3</div>  
 		</div>
 	
 	<p> Press the button to create a new element of type div and then add it to the container.
@@ -42,16 +42,34 @@
 	
 </body>
 <script>
-	function makeNewDiv(){
+	function makeNewDiv() {
 		/* make the div and its text */
 		let element = document.createElement("div")
-		element.innerHTML = "an item after 3"
-		element.style.color = "orange"
-
-		/* add it to the container */
+		let result = document.getElementById("element").value;
+		element.innerHTML = result
+		element.style.color = "red"
+		element.className = "cycler";
+		/* adding it to the container */
 		let container = document.getElementById('target')
 		container.appendChild(element)
-		
+
+	}
+
+	function get(){
+		var cyclerItems = document.getElementsByClassName("cycler");
+		if(cyclerItems.length > 0){
+			cyclerItems[cyclerItems.length-1].remove();
+		}
+	}
+
+	function spin(){
+		var cyclerItems = document.getElementsByClassName("cycler");
+		if(cyclerItems.length > 1){
+			let container = document.getElementById('target');
+			var removedItem = cyclerItems[cyclerItems.length-1];
+			cyclerItems[cyclerItems.length-1].remove();
+			container.insertBefore(removedItem,container.firstChild);
+		}
 	}
 </script>
 </html>	
